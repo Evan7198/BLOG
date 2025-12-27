@@ -2,10 +2,11 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import CyberBackground from '../../components/CyberBackground.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -15,93 +16,248 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Research // ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
+			/* === Cyberpunk Grid Layout === */
 			main {
-				width: 960px;
+				width: 1200px;
+				max-width: 100%;
+				margin: 0 auto;
+				padding: 2em 1em;
+				position: relative;
+				z-index: 10;
 			}
-			ul {
+
+			/* Page Header */
+			.archive-header {
+				border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+				margin-bottom: 3rem;
+				padding-bottom: 1rem;
 				display: flex;
-				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: flex-end;
+			}
+
+			.archive-title {
+				font-family: 'Courier New', monospace;
+				font-size: 2rem;
+				color: #fff;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				text-shadow: 0 0 10px rgba(176, 38, 255, 0.5);
+			}
+
+			.archive-title span {
+				color: #b026ff;
+			}
+
+			.archive-meta {
+				font-family: 'Courier New', monospace;
+				color: #a0a0b0;
+				font-size: 0.8rem;
+				text-align: right;
+			}
+
+			/* Grid Container */
+			.case-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
+				list-style: none;
 				padding: 0;
+				margin: 0;
 			}
-			ul li {
-				width: calc(50% - 1rem);
+
+			/* Individual Card (Case File) */
+			.case-file {
+				position: relative;
+				background: rgba(10, 10, 16, 0.6);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 4px;
+				overflow: hidden;
+				transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+				backdrop-filter: blur(5px);
 			}
-			ul li * {
+
+			.case-file::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(90deg, #b026ff, transparent);
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+
+			.case-file:hover {
+				transform: translateY(-5px);
+				border-color: #b026ff;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(176, 38, 255, 0.1);
+			}
+
+			.case-file:hover::before {
+				opacity: 1;
+			}
+
+			.case-link {
 				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
+				color: inherit;
 				display: block;
+				height: 100%;
 			}
+
+			/* Image Area */
+			.image-wrapper {
+				position: relative;
+				width: 100%;
+				height: 200px;
+				overflow: hidden;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			}
+
+			.case-file img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				filter: grayscale(100%) contrast(1.2) brightness(0.8);
+				transition: filter 0.3s, transform 0.5s;
+				mix-blend-mode: luminosity;
+			}
+
+			.case-file:hover img {
+				filter: grayscale(0%) contrast(1) brightness(1);
+				transform: scale(1.05);
+				mix-blend-mode: normal;
+			}
+
+			/* Overlay Scanlines on Image */
+			.scan-overlay {
+				position: absolute;
+				inset: 0;
+				background: repeating-linear-gradient(
+					0deg,
+					transparent,
+					transparent 2px,
+					rgba(0, 0, 0, 0.5) 3px
+				);
+				pointer-events: none;
+				z-index: 2;
+			}
+
+			/* Content Area */
+			.file-content {
+				padding: 1.5rem;
+			}
+
+			.file-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.8rem;
+				font-size: 0.75rem;
+				font-family: 'Courier New', monospace;
+				color: #b026ff;
+			}
+
+			.status-badge {
+				background: rgba(176, 38, 255, 0.1);
+				padding: 2px 6px;
+				border: 1px solid rgba(176, 38, 255, 0.3);
+				border-radius: 2px;
+			}
+
 			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
+				font-size: 1.4rem;
+				margin: 0 0 0.5rem 0;
+				color: #fff;
+				line-height: 1.2;
+				font-weight: 700;
+				transition: color 0.2s;
 			}
+
+			.case-file:hover .title {
+				color: #b026ff;
+				text-shadow: 0 0 5px rgba(176, 38, 255, 0.5);
+			}
+
 			.date {
+				font-size: 0.85rem;
+				color: #666;
 				margin: 0;
-				color: rgb(var(--gray));
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
+
+			/* Decoration: Corner Brackets */
+			.corner {
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				transition: all 0.3s;
 			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+			.tl { top: -1px; left: -1px; border-bottom: 0; border-right: 0; }
+			.br { bottom: -1px; right: -1px; border-top: 0; border-left: 0; }
+
+			.case-file:hover .tl, .case-file:hover .br {
+				width: 100%;
+				height: 100%;
+				border-color: rgba(176, 38, 255, 0.5);
+				opacity: 0.5;
 			}
+
 			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
+				.case-grid {
+					grid-template-columns: 1fr;
 				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
+				.archive-header {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1rem;
 				}
 			}
 		</style>
 	</head>
 	<body>
+		<CyberBackground />
 		<Header />
 		<main>
+			<header class="archive-header">
+				<h1 class="archive-title">Database <span>//</span> RESEARCH</h1>
+				<div class="archive-meta">
+					<div>STATUS: ONLINE</div>
+					<div>ENTRIES: {posts.length}</div>
+				</div>
+			</header>
+
 			<section>
-				<ul>
+				<ul class="case-grid">
 					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
+						posts.map((post, index) => (
+							<li class="case-file" style={`animation: fadeIn 0.5s ease-out ${index * 0.1}s backwards`}>
+								<a href={`/blog/${post.id}/`} class="case-link">
+									<div class="corner tl"></div>
+									<div class="corner br"></div>
+									
+									<div class="image-wrapper">
+										<div class="scan-overlay"></div>
+										{post.data.heroImage && (
+											<Image width={720} height={360} src={post.data.heroImage} alt="" />
+										)}
+									</div>
+									
+									<div class="file-content">
+										<div class="file-header">
+											<span class="file-id">CASE #{Math.floor(Math.random() * 9000) + 1000}</span>
+											<span class="status-badge">
+												{['KERNEL_LEVEL', 'RING-0', 'BYPASSED', 'UNDETECTED', 'PRIVATE'][Math.floor(Math.random() * 5)]}
+											</span>
+										</div>
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											Logged: <FormattedDate date={post.data.pubDate} />
+										</p>
+									</div>
 								</a>
 							</li>
 						))
@@ -110,5 +266,12 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<Footer />
+
+		<style>
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(20px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+		</style>
 	</body>
 </html>

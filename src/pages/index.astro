@@ -1,8 +1,11 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import CyberBackground from '../components/CyberBackground.astro';
+import DiscordCTA from '../components/DiscordCTA.astro';
+import EntranceGate from '../components/EntranceGate.astro';
 ---
 
 <!doctype html>
@@ -11,39 +14,296 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<EntranceGate />
+		<CyberBackground />
+		<div class="site-content">
+			<Header />
+			<main>
+				<div class="hero">
+					<h1>Welcome to <span class="animated-title">EPROJECT.TOP</span></h1>
+				<p class="subtitle">
+					Researching the Unseen: <span class="highlight">DMA</span>, <span class="highlight">Reverse Engineering</span>, and <span class="highlight">Anti-Cheat Analysis</span>.
+				</p>
+			</div>
+			
+			<div class="terminal-card">
+				<div class="terminal-header">
+					<span class="dot red"></span>
+					<span class="dot yellow"></span>
+					<span class="dot green"></span>
+				</div>
+				<div class="terminal-body">
+					<p><span class="prompt">root@Evan:~$</span> ./dma_monitor --watch 0x1000 --flow</p>
+					<!-- Wrapper for the smooth scrolling window -->
+					<div class="scroll-window">
+						<!-- This container will move smoothly -->
+						<div id="memory-dump" class="scroll-content"></div>
+					</div>
+					<p><span class="prompt">root@Evan:~$</span> <span class="cursor">_</span></p>
+				</div>
+			</div>
+
+			<section>
+				<h2>Latest Research</h2>
+				<p>
+					Explore the latest findings in low-level system manipulation and software protection analysis.
+				</p>
+				<!-- You can query and display latest posts here in the future -->
+				<div class="features">
+					<div class="feature-card">
+						<h3>DMA Attacks</h3>
+						<p>Direct Memory Access manipulation techniques and hardware-based cheat analysis.</p>
+					</div>
+					<div class="feature-card">
+						<h3>Reverse Engineering</h3>
+						<p>Disassembling and decompiling proprietary binaries to understand internal logic.</p>
+					</div>
+					<div class="feature-card">
+						<h3>Anti-Cheat Bypass</h3>
+						<p>Analyzing kernel-level protection mechanisms and their potential vulnerabilities.</p>
+					</div>
+				</div>
+
+				<DiscordCTA />
+			</section>
 		</main>
 		<Footer />
+		</div> <!-- End .site-content -->
+		
+		<style>
+			/* Site Entrance Animation */
+			.site-content {
+				opacity: 0;
+				filter: blur(10px);
+				transform: scale(0.98);
+				transition: opacity 2s ease 1s, filter 2s ease 1s, transform 2s ease 1s; /* Wait for void to cover */
+			}
+
+			/* When unlocked, show content */
+			:global(body.unlocked) .site-content {
+				opacity: 1;
+				filter: blur(0);
+				transform: scale(1);
+			}
+			
+			/* Immediate show for revisit */
+			:global(body.no-anim) .site-content {
+				transition: none;
+				opacity: 1;
+				filter: blur(0);
+				transform: scale(1);
+			}
+
+			.hero {
+				text-align: center;
+				padding: 4em 0;
+			}
+			
+			/* High-Intensity Neon Title */
+			.animated-title {
+				font-family: inherit; /* Inherit font from h1 for consistency */
+				font-weight: inherit; /* Ensure weight matches "Welcome to" */
+				position: relative;
+				color: #fff;
+				text-transform: uppercase; /* Optional: looks stronger */
+				
+				/* Strong layered glow */
+				text-shadow: 
+					0 0 5px #fff,
+					0 0 10px #fff,
+					0 0 20px #b026ff,
+					0 0 35px #b026ff,
+					0 0 50px #b026ff;
+				
+				animation: neon-pulse 1.5s infinite alternate;
+			}
+
+			@keyframes neon-pulse {
+				from {
+					text-shadow: 
+						0 0 5px #fff,
+						0 0 10px #fff,
+						0 0 20px #b026ff,
+						0 0 35px #b026ff,
+						0 0 50px #b026ff;
+				}
+				to {
+					text-shadow: 
+						0 0 2px #fff,
+						0 0 5px #fff,
+						0 0 15px #b026ff,
+						0 0 25px #b026ff,
+						0 0 40px #6a0dad; /* Darker purple at low pulse */
+				}
+			}
+
+			.glitch {
+				position: relative;
+				color: #fff;
+				font-weight: bold;
+			}
+			/* Glitch effects handled by IdentityReveal component primarily now, 
+			   but keeping these for any fallback or additional styling if needed */
+			.glitch::before, .glitch::after {
+				content: attr(data-text);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--bg-dark);
+			}
+			/* ... existing glitch keyframes ... */
+
+			.subtitle {
+				font-size: 1.2em;
+				color: #ccc;
+			}
+			.highlight {
+				color: var(--accent);
+				text-shadow: 0 0 5px var(--accent);
+			}
+
+			/* Terminal Card */
+			.terminal-card {
+				background: #1e1e1e;
+				border-radius: 6px;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+				margin: 2em auto;
+				max-width: 600px;
+				border: 1px solid #333;
+				overflow: hidden;
+			}
+			.terminal-header {
+				background: #2d2d2d;
+				padding: 10px;
+				display: flex;
+				gap: 6px;
+			}
+			.dot {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			.red { background: #ff5f56; }
+			.yellow { background: #ffbd2e; }
+			.green { background: #27c93f; }
+			.terminal-body {
+				padding: 20px;
+				font-family: 'Courier New', monospace;
+				color: #fff;
+				text-align: left;
+			}
+			.prompt { color: #27c93f; }
+			.output { color: #ccc; margin: 5px 0; }
+			.cursor {
+				animation: blink 1s step-end infinite;
+			}
+			
+			.scroll-window {
+				height: 120px;
+				overflow: hidden;
+				position: relative;
+				mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+				-webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+				margin-bottom: 10px;
+			}
+
+			.scroll-content {
+				font-family: 'Courier New', monospace;
+				color: #a0a0b0;
+				font-size: 0.9em;
+				line-height: 1.5em; /* Explicit line-height for calculation */
+				will-change: transform; /* Performance optimization */
+			}
+
+			@keyframes blink { 50% { opacity: 0; } }
+
+			/* Features Grid */
+			.features {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 20px;
+				margin-top: 3em;
+			}
+			.feature-card {
+				background: rgba(255, 255, 255, 0.03);
+				padding: 20px;
+				border-radius: 8px;
+				border: 1px solid var(--border-color);
+				transition: transform 0.3s ease, border-color 0.3s ease;
+			}
+			.feature-card:hover {
+				transform: translateY(-5px);
+				border-color: var(--accent);
+				box-shadow: 0 5px 15px rgba(176, 38, 255, 0.1);
+			}
+			.feature-card h3 {
+				color: var(--accent);
+				font-size: 1.2em;
+			}
+		</style>
+
+		<script>
+			const dumpContainer = document.getElementById('memory-dump');
+			const scrollWindow = document.querySelector('.scroll-window');
+
+			if (dumpContainer && scrollWindow) {
+				const lineHeight = 21; 
+				let offset = 0;
+				const speed = 0.1; // Even slower
+				let isPaused = false;
+
+				// Pause on hover (only on the text area)
+				scrollWindow.addEventListener('mouseenter', () => { isPaused = true; });
+				scrollWindow.addEventListener('mouseleave', () => { isPaused = false; });
+
+				const generateHex = () => {
+					const addr = Math.floor(Math.random() * 0xFFFFFF).toString(16).toUpperCase().padStart(8, '0');
+					let line = `<span style="color:#b026ff">0x${addr}</span>  `;
+					for(let i=0; i<8; i++) {
+						const byte = Math.floor(Math.random() * 256).toString(16).toUpperCase().padStart(2, '0');
+						if (Math.random() > 0.85) {
+							line += `<span style="color:#fff; font-weight:bold; text-shadow:0 0 5px white;">${byte}</span> `;
+						} else {
+							line += `${byte} `;
+						}
+					}
+					line += ` <span style="color:#555">| ........</span>`;
+					return line;
+				};
+
+				const addLine = () => {
+					const div = document.createElement('div');
+					div.style.height = `${lineHeight}px`;
+					div.style.whiteSpace = 'nowrap';
+					div.innerHTML = generateHex();
+					dumpContainer.appendChild(div);
+				};
+
+				// Initial fill
+				for(let i=0; i<10; i++) addLine();
+
+				const animate = () => {
+					if (!isPaused) {
+						offset -= speed;
+						
+						if (offset <= -lineHeight) {
+							offset += lineHeight;
+							if (dumpContainer.firstElementChild) {
+								dumpContainer.removeChild(dumpContainer.firstElementChild);
+							}
+							addLine();
+						}
+						
+						dumpContainer.style.transform = `translateY(${offset}px)`;
+					}
+					requestAnimationFrame(animate);
+				};
+
+				requestAnimationFrame(animate);
+			}
+		</script>
 	</body>
 </html>
