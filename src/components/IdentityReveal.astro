@@ -1,0 +1,92 @@
+<span class="reveal-container">
+  <!-- 底层：真名 (Evan) -->
+  <!-- 后面补全空格以保持与 Hex 长度一致，确保布局不塌陷 -->
+  <span class="layer bottom" aria-hidden="true">Evan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  
+  <!-- 顶层：代号 (0x6576616E) -->
+  <!-- CSS Mask 将作用于此层 -->
+  <span class="layer top">0x6576616E</span>
+</span>
+
+<style>
+  .reveal-container {
+    position: relative;
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: default; /* 或者 crosshair */
+    user-select: none;
+    /* 确保容器有宽高 */
+    vertical-align: bottom;
+  }
+
+  .layer {
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre; /* 保持空格宽度 */
+  }
+
+  /* 底层样式 (Evan) */
+  .bottom {
+    color: #b026ff; /* 霓虹紫 */
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.8);
+    display: inline-block;
+  }
+
+  /* 顶层样式 (0x...) */
+  .top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #e0e0e0;
+    background: transparent;
+    
+    /* 核心 Mask 逻辑 */
+    /* 默认圆心在 -100% -100% (隐藏)，鼠标移入后更新变量 */
+    --x: -100%;
+    --y: -100%;
+    --mask-size: 50px; /* 探照灯半径 */
+    
+    /* transparent = 挖空 (显示底层), black = 保留 (显示顶层) */
+    mask-image: radial-gradient(
+      circle var(--mask-size) at var(--x) var(--y), 
+      transparent 10%, 
+      black 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle var(--mask-size) at var(--x) var(--y), 
+      transparent 10%, 
+      black 80%
+    );
+    
+    transition: mask-position 0.1s ease; /* 轻微平滑 */
+  }
+</style>
+
+<script>
+  const containers = document.querySelectorAll('.reveal-container');
+
+  containers.forEach(container => {
+    const topLayer = container.querySelector('.top') as HTMLElement;
+
+    container.addEventListener('mousemove', (e) => {
+      // 显式断言 e 为 MouseEvent 以访问 clientX/Y
+      const mouseEvent = e as MouseEvent;
+      const rect = container.getBoundingClientRect();
+      const x = mouseEvent.clientX - rect.left;
+      const y = mouseEvent.clientY - rect.top;
+
+      // 更新 CSS 变量，让 mask 中心跟随鼠标
+      topLayer.style.setProperty('--x', `${x}px`);
+      topLayer.style.setProperty('--y', `${y}px`);
+    });
+
+    container.addEventListener('mouseleave', () => {
+      // 鼠标离开时，将 mask 移出可视范围，恢复原样
+      topLayer.style.setProperty('--x', '-100%');
+      topLayer.style.setProperty('--y', '-100%');
+    });
+  });
+</script>

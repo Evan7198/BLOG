@@ -1,0 +1,40 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#101010;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg)"/>
+
+  <!-- Circuit Traces -->
+  <g stroke="#27c93f" stroke-width="2" fill="none" opacity="0.3">
+    <path d="M50 200 H 200 L 250 150 V 50" />
+    <path d="M750 200 H 600 L 550 250 V 350" />
+    <path d="M400 50 V 100" />
+    <path d="M400 350 V 300" />
+  </g>
+
+  <!-- Central Chip -->
+  <g transform="translate(300, 100)">
+    <rect x="0" y="0" width="200" height="200" fill="#111" stroke="#27c93f" stroke-width="2" filter="url(#neon)"/>
+    <rect x="20" y="20" width="160" height="160" fill="#000" stroke="#1a5c22" stroke-width="1"/>
+    
+    <!-- Chip Pins -->
+    <path d="M-10 20 H0 M-10 40 H0 M-10 60 H0 M-10 80 H0 M-10 100 H0 M-10 120 H0 M-10 140 H0 M-10 160 H0 M-10 180 H0" stroke="#27c93f" stroke-width="2"/>
+    <path d="M200 20 H210 M200 40 H210 M200 60 H210 M200 80 H210 M200 100 H210 M200 120 H210 M200 140 H210 M200 160 H210 M200 180 H210" stroke="#27c93f" stroke-width="2"/>
+    
+    <!-- Chip Logo -->
+    <text x="100" y="110" font-family="monospace" font-size="24" fill="#27c93f" text-anchor="middle" filter="url(#neon)">FPGA::CORE</text>
+  </g>
+
+  <text x="600" y="380" font-family="monospace" font-size="12" fill="#27c93f" opacity="0.6">DIRECT_MEMORY_ACCESS // BYPASS</text>
+</svg>

@@ -7,7 +7,6 @@ import IdentityReveal from '../components/IdentityReveal.astro';
 <Layout
 	title="Profile: Evan"
 	description="Profile and technical capabilities of Evan"
-	pubDate={new Date('2025-12-27')}
 >
 	<!-- Custom Title with Smooth Flow Animation -->
 	<span slot="title" class="animated-title">Evan</span>
@@ -27,30 +26,30 @@ import IdentityReveal from '../components/IdentityReveal.astro';
 
 		<hr class="divider"/>
 
-		<!-- Section 2: Technical Arsenal (Visual) -->
+		<!-- Section 2: Technical SKILLS (Visual) -->
 		<section class="arsenal">
-			<h2><span class="glitch-header" data-text="TECHNICAL ARSENAL">TECHNICAL ARSENAL</span></h2>
+			<h2><span class="glitch-header" data-text="TECHNICAL SKILLS">TECHNICAL SKILLS</span></h2>
 			
 			<div class="skill-grid">
 				<!-- Skill 1 -->
 				<div class="skill-item">
 					<div class="skill-info">
-						<span>Kernel Driver Development</span>
-						<span class="percentage">98%</span>
+						<span>Driver Development</span>
+						<span class="percentage">60%</span>
 					</div>
 					<div class="progress-bar">
-						<div class="fill" style="width: 98%; animation-delay: 0.2s;"></div>
+						<div class="fill" style="--target-width: 60%; animation-delay: 0.2s;"></div>
 					</div>
 				</div>
 
 				<!-- Skill 2 -->
 				<div class="skill-item">
 					<div class="skill-info">
-						<span>Reverse Engineering (IDA/Ghidra)</span>
-						<span class="percentage">95%</span>
+						<span>Reverse Engineering (IDA)</span>
+						<span class="percentage">80%</span>
 					</div>
 					<div class="progress-bar">
-						<div class="fill" style="width: 95%; animation-delay: 0.4s;"></div>
+						<div class="fill" style="--target-width: 80%; animation-delay: 0.4s;"></div>
 					</div>
 				</div>
 
@@ -58,21 +57,21 @@ import IdentityReveal from '../components/IdentityReveal.astro';
 				<div class="skill-item">
 					<div class="skill-info">
 						<span>DMA / FPGA Logic</span>
-						<span class="percentage">90%</span>
+						<span class="percentage">99%</span>
 					</div>
 					<div class="progress-bar">
-						<div class="fill" style="width: 90%; animation-delay: 0.6s;"></div>
+						<div class="fill" style="--target-width: 99%; animation-delay: 0.6s;"></div>
 					</div>
 				</div>
 
 				<!-- Skill 4 -->
 				<div class="skill-item">
 					<div class="skill-info">
-						<span>Anti-Cheat Evasion (EAC/BE)</span>
-						<span class="percentage">88%</span>
+						<span>Anti-Cheat Evasion (EAC/BE/VGK)</span>
+						<span class="percentage">99%</span>
 					</div>
 					<div class="progress-bar">
-						<div class="fill" style="width: 88%; animation-delay: 0.8s;"></div>
+						<div class="fill" style="--target-width: 99%; animation-delay: 0.8s;"></div>
 					</div>
 				</div>
 			</div>
@@ -86,24 +85,59 @@ import IdentityReveal from '../components/IdentityReveal.astro';
 			
 			<div class="timeline">
 				<div class="entry">
-					<div class="date">2024.Q1</div>
+					<div class="date">2025.Q4</div>
 					<div class="content">
-						<h3>Project "GhostRider"</h3>
-						<p>Deployed custom firmware for ScreamerPCLe. <span class="status">UNDETECTED</span></p>
+						<h3>SMM LC AGENT</h3>
+						<p>Achieve low-level memory reading and communicate with a remote host through SMM.</p>
 					</div>
 				</div>
 				<div class="entry">
 					<div class="date">2025.Q4</div>
 					<div class="content">
-						<h3>Hypervisor Bypass</h3>
-						<p>Successfully hooked kernel functions under heavy virtualization.</p>
+						<h3>IOMMU HOOK FIRMWARE</h3>
+						<p>Hijacking the IOMMU at the firmware level to bypass anti-cheat checks.</p>
 					</div>
 				</div>
 				<div class="entry">
-					<div class="date">2025.Q2</div>
+					<div class="date">2025.Q4</div>
 					<div class="content">
-						<h3>Memory Encryption Analysis</h3>
-						<p>Cracked proprietary pointer encryption for Engine X.</p>
+						<h3>AHCI FIRMWARE</h3>
+						<p>The pure firmware simulation implements the AHCI controller and hard disk simulation, achieving 100% disk emulation.</p>
+					</div>
+				</div>
+				<div class="entry">
+					<div class="date">2025.Q3</div>
+					<div class="content">
+						<h3>PCILEECH MCP SERVER</h3>
+						<p>The AI MCP server, further advancing the PCILEECH project community.The project has been open-sourced. <!-- <span class="status">UNDETECTED</span>--></p>
+					</div>
+				</div>
+				<div class="entry">
+					<div class="date">2025.Q3</div>
+					<div class="content">
+						<h3>DMA UNBLOCKER</h3>
+						<p>By reverse engineering the anti-cheat driver, the anti-cheat protection was bypassed.</p>
+					</div>
+				</div>
+				<div class="entry">
+					<div class="date">2025.Q3</div>
+					<div class="content">
+						<h3>DMA VTD/IOMMU DETECTED BYPASS</h3>
+						<p>By hijacking ACPI, the checks on VTD/IOMMU were bypassed.</p>
+					</div>
+				</div>
+				<div class="entry">
+					<div class="date">2025.Q1</div>
+					<div class="content">
+						<h3>FIRMWARE CUSTOM REG R/W SYSTEM</h3>
+						<p>Made modifications to the PCILEECH-FPGA project to support reading and writing custom registers. The project has been open-sourced.</p>
+					</div>
+				</div>
+				<div class="entry">
+					<div class="date">2025.Q1</div>
+					<div class="content">
+						<h3>PCILEECH FIRMWARE DMA ENGINE</h3>
+						<p>Implemented a custom DMA engine read/write framework under the PCILEECH-FPGA framework.</p>
 					</div>
 				</div>
 			</div>

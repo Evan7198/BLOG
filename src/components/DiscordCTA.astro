@@ -1,0 +1,245 @@
+<div class="discord-card-wrapper">
+  <a href="https://discord.gg/PwAXYPMkkF" target="_blank" class="discord-card">
+    <div class="card-bg"></div>
+    <div class="card-glow"></div>
+    
+    <div class="card-content">
+      <div class="icon-box">
+        <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.2 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.53.31-1.07.57-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.67-.53 3.4-1.33 5.2-2.65c.02-.01.03-.03.03-.05c.44-4.52-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.9 2.12c0 1.17-.85 2.12-1.9 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.9 2.12c0 1.17-.85 2.12-1.9 2.12z"/>
+        </svg>
+        <div class="status-dot"></div>
+      </div>
+      
+      <div class="text-group">
+        <h3 class="glitch-text" data-text="JOIN THE Discord">JOIN THE Discord</h3>
+        <p>Access exclusive tools, research, and connect with the elite.</p>
+      </div>
+
+      <div class="action-arrow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .discord-card-wrapper {
+    margin: 4rem 0;
+    position: relative;
+    padding: 1px; /* Create space for border gradient */
+    background: linear-gradient(45deg, #1a1a24, #2a2a35);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+
+  /* Animated Border Effect */
+  .discord-card-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg, #b026ff, #6a0dad, #b026ff);
+    background-size: 200% 100%;
+    animation: borderFlow 4s linear infinite;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .discord-card-wrapper:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .discord-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #0a0a12;
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    z-index: 1;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* Spotlight / Mouse Follow Effect */
+  .card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(176, 38, 255, 0.15), transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: screen;
+  }
+
+  .discord-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  /* Scanline Background */
+  .card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(176, 38, 255, 0.03) 3px,
+      rgba(176, 38, 255, 0.03) 3px
+    );
+    pointer-events: none;
+  }
+
+  .card-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Icon Styling */
+  .icon-box {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    background: rgba(176, 38, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(176, 38, 255, 0.2);
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .discord-card:hover .icon-box {
+    background: rgba(176, 38, 255, 0.2);
+    box-shadow: 0 0 25px rgba(176, 38, 255, 0.3);
+    border-color: rgba(176, 38, 255, 0.5);
+    transform: scale(1.05);
+  }
+
+  .discord-icon {
+    width: 36px;
+    height: 36px;
+    color: #b026ff;
+    transition: color 0.3s ease;
+  }
+  
+  .discord-card:hover .discord-icon {
+    color: #fff;
+    filter: drop-shadow(0 0 5px #fff);
+  }
+
+  .status-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background: #27c93f;
+    border: 2px solid #0a0a12;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #27c93f;
+  }
+
+  /* Text Styling */
+  .text-group {
+    flex: 1;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.5);
+  }
+
+  p {
+    margin: 0.5rem 0 0 0;
+    color: #a0a0b0;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  
+  .discord-card:hover p {
+    color: #ccc;
+  }
+
+  /* Glitch Text Effect on Hover */
+  .discord-card:hover .glitch-text {
+    animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  }
+
+  @keyframes glitch-skew {
+    0% { transform: translate(0); }
+    10% { transform: translate(-2px, 2px); }
+    20% { transform: translate(-2px, -2px); }
+    30% { transform: translate(2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    50% { transform: translate(0); }
+    100% { transform: translate(0); }
+  }
+
+  /* Action Arrow */
+  .action-arrow {
+    color: #444;
+    transition: all 0.3s ease;
+    transform: translateX(0);
+  }
+
+  .discord-card:hover .action-arrow {
+    color: #b026ff;
+    transform: translateX(10px) scale(1.2);
+    filter: drop-shadow(0 0 5px #b026ff);
+  }
+
+  @media (max-width: 600px) {
+    .card-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    .action-arrow {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Mouse follow spotlight effect
+  const card = document.querySelector('.discord-card') as HTMLElement;
+  const glow = document.querySelector('.card-glow') as HTMLElement;
+
+  if (card && glow) {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      glow.style.transform = `translate(${x - 300}px, ${y - 300}px)`;
+    });
+  }
+</script>

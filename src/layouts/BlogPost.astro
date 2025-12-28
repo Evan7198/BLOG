@@ -8,7 +8,13 @@ import Header from '../components/Header.astro';
 import CyberBackground from '../components/CyberBackground.astro';
 import DiscordCTA from '../components/DiscordCTA.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] | {
+	title: string;
+	description: string;
+	pubDate?: Date;
+	updatedDate?: Date;
+	heroImage?: string;
+};
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
@@ -69,16 +75,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				</div>
 				<div class="prose">
 					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
+						{pubDate && (
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+						)}
 						<h1>
 							<slot name="title">{title}</slot>
 						</h1>

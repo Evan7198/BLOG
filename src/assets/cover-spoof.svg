@@ -1,0 +1,34 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#100000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#200000;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glitch">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg)"/>
+
+  <!-- "Fake" ID Card -->
+  <g transform="translate(250, 100)">
+    <rect x="0" y="0" width="300" height="200" fill="#222" stroke="#ff3333" stroke-width="2"/>
+    <rect x="20" y="20" width="80" height="80" fill="#333" />
+    <text x="120" y="50" font-family="monospace" font-size="16" fill="#fff">ID: INTEL_WIFI</text>
+    <text x="120" y="80" font-family="monospace" font-size="12" fill="#888">VENDOR: 8086</text>
+    <text x="120" y="100" font-family="monospace" font-size="12" fill="#888">DEVICE: 2723</text>
+    
+    <!-- REJECTED Stamp -->
+    <text x="50" y="150" font-family="Impact, sans-serif" font-size="60" fill="#ff0000" transform="rotate(-15 150 100)" opacity="0.8" style="letter-spacing: 5px;">
+      FAKE
+    </text>
+  </g>
+
+  <!-- Glitch Lines -->
+  <line x1="0" y1="50" x2="800" y2="50" stroke="#ff0000" stroke-width="1" opacity="0.3" filter="url(#glitch)"/>
+  <line x1="0" y1="350" x2="800" y2="350" stroke="#ff0000" stroke-width="1" opacity="0.3" filter="url(#glitch)"/>
+
+  <text x="280" y="350" font-family="monospace" font-size="14" fill="#ff3333">VERIFICATION_FAILED :: DRIVER_MISMATCH</text>
+</svg>
