@@ -33,6 +33,10 @@
 	font-display: swap;
 }
 
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 html {
 	background-color: var(--bg-dark);
 }
@@ -70,6 +74,17 @@ main {
 	padding: 3em 1em;
 	position: relative;
 	z-index: 1;
+}
+
+@media (max-width: 720px) {
+	main {
+		padding: 1.5em 1em;
+	}
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.75em; }
+	h3 { font-size: 1.5em; }
+	h4 { font-size: 1.25em; }
+	h5 { font-size: 1.1em; }
 }
 
 h1, h2, h3, h4, h5, h6 {

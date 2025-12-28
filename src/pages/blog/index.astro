@@ -20,8 +20,8 @@ const posts = (await getCollection('blog')).sort(
 		<style>
 			/* === Cyberpunk Grid Layout === */
 			main {
-				width: 1200px;
-				max-width: 100%;
+				width: 100%;
+				max-width: 1200px;
 				margin: 0 auto;
 				padding: 2em 1em;
 				position: relative;
@@ -207,13 +207,30 @@ const posts = (await getCollection('blog')).sort(
 			}
 
 			@media (max-width: 720px) {
+				main {
+					padding: 1em;
+				}
 				.case-grid {
 					grid-template-columns: 1fr;
+					gap: 1.5rem;
 				}
 				.archive-header {
 					flex-direction: column;
 					align-items: flex-start;
-					gap: 1rem;
+					gap: 0.5rem;
+					margin-bottom: 2rem;
+				}
+				.archive-title {
+					font-size: 1.5rem;
+				}
+				.image-wrapper {
+					height: 160px; /* Reduce image height on mobile */
+				}
+				.file-content {
+					padding: 1rem; /* Reduce padding on mobile */
+				}
+				.title {
+					font-size: 1.25rem; /* Smaller title on mobile */
 				}
 			}
 		</style>

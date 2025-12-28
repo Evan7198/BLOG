@@ -243,6 +243,31 @@ import EntranceGate from '../components/EntranceGate.astro';
 				color: var(--accent);
 				font-size: 1.2em;
 			}
+
+			@media (max-width: 720px) {
+				.hero {
+					padding: 2em 0;
+				}
+				.animated-title {
+					font-size: 1.5rem; /* Scale down title specifically if needed */
+				}
+				.subtitle {
+					font-size: 1rem;
+				}
+				.terminal-card {
+					margin: 1em auto;
+					width: 100%;
+				}
+				.terminal-body {
+					padding: 10px;
+					font-size: 0.8em; /* Smaller terminal text */
+				}
+				.features {
+					grid-template-columns: 1fr; /* Stack vertically */
+					gap: 15px;
+					margin-top: 2em;
+				}
+			}
 		</style>
 
 		<script>
